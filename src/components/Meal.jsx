@@ -1,10 +1,10 @@
 import { use } from "react";
-import { CartContext } from "../store/CartContext.jsx";
+import CartContext from "../store/CartContext.jsx";
 import { currencyFormatter } from "../util/formatting.js";
 import Button from "./UI/Button.jsx";
 export default function Meal({ meal }) {
-  const { addItem, removeItem } = use(CartContext);
-
+  const { items, addItem, removeItem } = use(CartContext);
+  const isItemExist = items.findIndex((item) => item.id === meal.id);
   return (
     <li className="meal-item">
       <article>
@@ -17,10 +17,13 @@ export default function Meal({ meal }) {
           <p className="meal-item-description">{meal.description}</p>
         </div>
         <div className="meal-item-actions">
-          <Button onClick={() => addItem(meal)}>Add to Cart</Button>
-          <Button textOnly onClick={() => removeItem(meal.id)}>
-            Remove Item
-          </Button>
+          {isItemExist > -1 ? (
+            <Button textOnly onClick={() => removeItem(meal.id)}>
+              Remove from Cart
+            </Button>
+          ) : (
+            <Button onClick={() => addItem(meal)}>Add to Cart</Button>
+          )}
         </div>
       </article>
     </li>
