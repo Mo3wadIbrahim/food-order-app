@@ -1,4 +1,3 @@
-//  This is for Git Test
 import { currencyFormatter } from "../util/formatting.js";
 import Button from "./UI/Button.jsx";
 export default function Meal({ meal }) {
