@@ -1,4 +1,5 @@
 import logo from "../assets/logo.jpg";
+// eslint-disable-next-line no-unused-vars
 import Button from "./UI/Button.jsx";
 export default function Header() {
   return (
