@@ -1,4 +1,4 @@
-import { useReducer, createContext, useContext } from "react";
+import { useReducer, createContext } from "react";
 
 export const CartContext = createContext({
   items: [],
@@ -11,6 +11,7 @@ function cartReducer(state, action) {
       (item) => item.id === action.item.id,
     );
     const updatedItems = [...state.items];
+
     if (existingCartItemIndex > -1) {
       const existingItem = updatedItems[existingCartItemIndex];
       const updatedItem = {
@@ -21,20 +22,18 @@ function cartReducer(state, action) {
     } else {
       updatedItems.push({ ...action.item, quantity: 1 });
     }
-    return { ...state, items: updatedItems };
+    return { ...state, items: [...updatedItems] };
   }
   if (action.type === "REMOVE_ITEM") {
     const existingCartItemIndex = state.items.findIndex(
-      (item) => item.id === action.item.id,
+      (item) => item.id === action.id,
     );
     if (existingCartItemIndex > -1) {
       const oldItems = [...state.items];
-      const updatedItems = oldItems.filter(
-        (item) => item.id !== action.item.id,
-      );
+      const updatedItems = oldItems.filter((item) => item.id !== action.id);
       return { ...state, items: updatedItems };
     } else {
-      // handle item not exist
+      alert("Item is not exist!");
     }
   }
   return state;
@@ -42,5 +41,17 @@ function cartReducer(state, action) {
 export function ContextProvider({ children }) {
   const [state, dispatch] = useReducer(cartReducer, { items: [] });
 
-  return <CartContext>{children}</CartContext>;
+  function addItem(item) {
+    dispatch({ type: "ADD_ITEM", item: item });
+  }
+
+  function removeItem(id) {
+    dispatch({ type: "REMOVE_ITEM", id: id });
+  }
+  const contextValue = {
+    items: state.items,
+    addItem,
+    removeItem,
+  };
+  return <CartContext value={contextValue}>{children}</CartContext>;
 }
