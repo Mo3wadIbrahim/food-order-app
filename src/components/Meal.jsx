@@ -1,5 +1,4 @@
 import { currencyFormatter } from "../util/formatting.js";
-// eslint-disable-next-line no-unused-vars
 import Button from "./UI/Button.jsx";
 export default function Meal({ meal }) {
   return (
