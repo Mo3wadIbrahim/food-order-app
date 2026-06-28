@@ -2,7 +2,7 @@ import UserProgressContext from "../store/UserProgressContext.jsx";
 import CartContext from "../store/CartContext.jsx";
 
 import { use } from "react";
-import Modal from "./Modal.jsx";
+import Modal from "./UI/Modal.jsx";
 import { currencyFormatter } from "../util/formatting.js";
 import Button from "./UI/Button.jsx";
 
