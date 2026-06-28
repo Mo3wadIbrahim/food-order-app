@@ -1,9 +1,11 @@
 import { useReducer, createContext } from "react";
 
 const CartContext = createContext({
-  // items: [],
-  // addItem: (item) => {},
-  // removeItem: (id) => {},
+  items: [],
+  // eslint-disable-next-line no-unused-vars
+  addItem: (item) => {},
+  // eslint-disable-next-line no-unused-vars
+  removeItem: (id) => {},
 });
 function cartReducer(state, action) {
   if (action.type === "ADD_ITEM") {
@@ -26,15 +28,20 @@ function cartReducer(state, action) {
   }
   if (action.type === "REMOVE_ITEM") {
     const existingCartItemIndex = state.items.findIndex(
-      (item) => item.id === action.id,
+      (item) => item.id === action.item.id,
     );
-    if (existingCartItemIndex > -1) {
-      const oldItems = [...state.items];
-      const updatedItems = oldItems.filter((item) => item.id !== action.id);
-      return { ...state, items: updatedItems };
+    const updatedItems = [...state.items];
+    const existingCartItem = { ...state.items[existingCartItemIndex] };
+    if (existingCartItem.quantity === 1) {
+      updatedItems.splice(existingCartItemIndex, 1);
     } else {
-      alert("Item is not exist!");
+      const updatedItem = {
+        ...existingCartItem,
+        quantity: existingCartItem.quantity - 1,
+      };
+      updatedItems[existingCartItemIndex] = updatedItem;
     }
+    return { ...state, items: [...updatedItems] };
   }
   return state;
 }
@@ -45,8 +52,8 @@ export function ContextProvider({ children }) {
     dispatch({ type: "ADD_ITEM", item: item });
   }
 
-  function removeItem(id) {
-    dispatch({ type: "REMOVE_ITEM", id: id });
+  function removeItem(item) {
+    dispatch({ type: "REMOVE_ITEM", item });
   }
   const contextValue = {
     items: state.items,
