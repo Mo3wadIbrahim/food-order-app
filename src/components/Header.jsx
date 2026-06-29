@@ -7,6 +7,7 @@ import Button from "./UI/Button.jsx";
 // import { currencyFormatter } from "../util/formatting.js";
 export default function Header() {
   const { items } = use(CartContext);
+  const itemsQuantity = items.reduce((total, item) => total + item.quantity, 0);
   const { showCart } = use(UserProgressContext);
   return (
     <>
@@ -17,11 +18,7 @@ export default function Header() {
         </div>
         <nav>
           <Button textOnly onClick={showCart}>
-            Cart Items: ( {items.length} ) - Quantity: ({" "}
-            {items.reduce((total, item) => {
-              return total + item.quantity;
-            }, 0)}{" "}
-            )
+            Cart ( {itemsQuantity} )
           </Button>
         </nav>
       </header>
