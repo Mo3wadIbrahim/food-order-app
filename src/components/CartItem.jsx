@@ -11,10 +11,10 @@ export default function CartItem({ item, addItem, removeItem }) {
         src={`http://localhost:3000/${item.image}`}
         alt="Item Image"
       /> */}
-      <p>
+      <h3>
         {item.name} : {item.quantity} x {currencyFormatter.format(item.price)} ={" "}
         {currencyFormatter.format(item.price * item.quantity)}
-      </p>
+      </h3>
       <p className="cart-item-actions">
         <Button textOnly onClick={onDecrease}>
           -

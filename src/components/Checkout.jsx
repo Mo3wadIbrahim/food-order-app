@@ -21,7 +21,7 @@ export default function Checkout() {
       open={progress === "checkout"}
       onClose={progress === "checkout" ? hideCheckout : null}
     >
-      <p>Total Amount: {currencyFormatter.format(cartTotalPrice)}</p>
+      <h3>Total Amount: {currencyFormatter.format(cartTotalPrice)}</h3>
       <form>
         <Input label="Full Name" type="text" id="full-name" />
         <Input label="E-mail Address" type="email" id="email" />
