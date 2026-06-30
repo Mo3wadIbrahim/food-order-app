@@ -5,8 +5,18 @@ import { use } from "react";
 import Modal from "./UI/Modal.jsx";
 import Button from "./UI/Button.jsx";
 import Input from "./UI/Input.jsx";
+import useHttp from "../hooks/useHTTP.js";
+// import ErrorComponent from "./ErrorComponent.jsx";
 
+const configRequest = {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+};
 export default function Checkout() {
+  const { isLoading: isSending, sendRequest } = useHttp(
+    "http://localhost:3000/ordeeeers",
+    configRequest,
+  );
   const { progress, showCart, hideCheckout } = use(UserProgressContext);
   const { items, removeItems } = use(CartContext);
   const cartTotalPrice = items.reduce(
@@ -14,31 +24,38 @@ export default function Checkout() {
     0,
   );
 
-  async function handleSubmit(event) {
+  function handleSubmit(event) {
     event.preventDefault();
     const fd = new FormData(event.target);
     const formData = Object.fromEntries(fd.entries());
-    const response = await fetch("http://localhost:3000/orders", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
+
+    sendRequest(
+      JSON.stringify({
         order: {
           items: items,
           customer: formData,
         },
       }),
-    });
-
-    if (!response.ok) {
-      throw new Error("Moawad Ibrahim");
-    }
-
-    if (response.ok) {
-      hideCheckout();
-      removeItems();
-    }
+    );
+    hideCheckout();
+    removeItems();
+  }
+  let actions = (
+    <>
+      <Button textOnly onClick={hideCheckout}>
+        Close
+      </Button>
+      <Button textOnly onClick={showCart}>
+        Return to Cart
+      </Button>
+      <Button type="submit">Submit Order</Button>
+    </>
+  );
+  // if (error) {
+  //   return <ErrorComponent message={error} title={"There is an Error"} />;
+  // }
+  if (isSending) {
+    actions = <p>Data is Sending...</p>;
   }
   return (
     <Modal
@@ -55,15 +72,7 @@ export default function Checkout() {
           <Input label="Postal Code" type="text" id="postal-code" />
           <Input label="City" type="text" id="city" />
         </div>
-        <p className="modal-actions">
-          <Button textOnly onClick={hideCheckout}>
-            Close
-          </Button>
-          <Button textOnly onClick={showCart}>
-            Return to Cart
-          </Button>
-          <Button type="submit">Submit Order</Button>
-        </p>
+        <p className="modal-actions">{actions}</p>
       </form>
     </Modal>
   );
