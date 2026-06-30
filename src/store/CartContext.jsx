@@ -6,6 +6,7 @@ const CartContext = createContext({
   addItem: (item) => {},
   // eslint-disable-next-line no-unused-vars
   removeItem: (id) => {},
+  removeItems: () => {},
 });
 function cartReducer(state, action) {
   if (action.type === "ADD_ITEM") {
@@ -43,6 +44,9 @@ function cartReducer(state, action) {
     }
     return { ...state, items: [...updatedItems] };
   }
+  if (action.type === "REMOVE_ITEMS") {
+    return { ...state, items: [] };
+  }
   return state;
 }
 export function ContextProvider({ children }) {
@@ -55,10 +59,14 @@ export function ContextProvider({ children }) {
   function removeItem(item) {
     dispatch({ type: "REMOVE_ITEM", item });
   }
+  function removeItems() {
+    dispatch({ type: "REMOVE_ITEMS" });
+  }
   const contextValue = {
     items: state.items,
     addItem,
     removeItem,
+    removeItems,
   };
   return <CartContext value={contextValue}>{children}</CartContext>;
 }

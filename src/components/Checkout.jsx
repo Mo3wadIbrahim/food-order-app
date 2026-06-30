@@ -8,7 +8,7 @@ import Input from "./UI/Input.jsx";
 
 export default function Checkout() {
   const { progress, showCart, hideCheckout } = use(UserProgressContext);
-  const { items } = use(CartContext);
+  const { items, removeItems } = use(CartContext);
   const cartTotalPrice = items.reduce(
     (totalPrice, item) => totalPrice + item.quantity * item.price,
     0,
@@ -33,6 +33,11 @@ export default function Checkout() {
 
     if (!response.ok) {
       throw new Error("Moawad Ibrahim");
+    }
+
+    if (response.ok) {
+      hideCheckout();
+      removeItems();
     }
   }
   return (
