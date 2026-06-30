@@ -7,7 +7,7 @@ import Button from "./UI/Button.jsx";
 import Input from "./UI/Input.jsx";
 import useHttp from "../hooks/useHTTP.js";
 // import ErrorComponent from "./ErrorComponent.jsx";
-//
+
 const configRequest = {
   method: "POST",
   headers: { "Content-Type": "application/json" },
