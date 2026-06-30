@@ -25,8 +25,8 @@ export default function Checkout() {
       },
       body: JSON.stringify({
         order: {
-          items: [...items],
-          customer: { ...formData },
+          items: items,
+          customer: formData,
         },
       }),
     });
