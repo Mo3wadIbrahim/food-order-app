@@ -14,7 +14,7 @@ const configRequest = {
 };
 export default function Checkout() {
   const { isLoading: isSending, sendRequest } = useHttp(
-    "http://localhost:3000/ordeeeers",
+    "http://localhost:3000/orders",
     configRequest,
   );
   const { progress, showCart, hideCheckout } = use(UserProgressContext);

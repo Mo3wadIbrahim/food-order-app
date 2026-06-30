@@ -1,1 +1,38 @@
-[{"items":[{"id":"m2","name":"Margherita Pizza","price":"12.99","description":"A classic pizza with fresh mozzarella, tomatoes, and basil on a thin and crispy crust.","image":"images/margherita-pizza.jpg","quantity":1},{"id":"m3","name":"Caesar Salad","price":"7.99","description":"Romaine lettuce tossed in Caesar dressing, topped with croutons and parmesan shavings.","image":"images/caesar-salad.jpg","quantity":1}],"customer":{"name":"Mo3wad Ibrahim","email":"mo3wadibrahim@gmail.com","street":"El omraneya - Althalatheny - 5","postal-code":"12573","city":"Giza"},"id":"547.5202464068926"},{"items":[{"id":"m2","name":"Margherita Pizza","price":"12.99","description":"A classic pizza with fresh mozzarella, tomatoes, and basil on a thin and crispy crust.","image":"images/margherita-pizza.jpg","quantity":1},{"id":"m3","name":"Caesar Salad","price":"7.99","description":"Romaine lettuce tossed in Caesar dressing, topped with croutons and parmesan shavings.","image":"images/caesar-salad.jpg","quantity":1}],"customer":{"name":"Mo3wad Ibrahim","email":"mo3wadibrahim@gmail.com","street":"El omraneya - Althalatheny - 5","postal-code":"345432","city":"Giza"},"id":"799.892782198393"},{"items":[{"id":"m3","name":"Caesar Salad","price":"7.99","description":"Romaine lettuce tossed in Caesar dressing, topped with croutons and parmesan shavings.","image":"images/caesar-salad.jpg","quantity":1},{"id":"m2","name":"Margherita Pizza","price":"12.99","description":"A classic pizza with fresh mozzarella, tomatoes, and basil on a thin and crispy crust.","image":"images/margherita-pizza.jpg","quantity":1}],"customer":{"name":"Mo3wad Ibrahim","email":"mo3wadibrahim@gmail.com","street":"El omraneya - Althalatheny - 5","postal-code":"12573","city":"Giza"},"id":"42.37261890240762"},{"items":[{"id":"m3","name":"Caesar Salad","price":"7.99","description":"Romaine lettuce tossed in Caesar dressing, topped with croutons and parmesan shavings.","image":"images/caesar-salad.jpg","quantity":1},{"id":"m2","name":"Margherita Pizza","price":"12.99","description":"A classic pizza with fresh mozzarella, tomatoes, and basil on a thin and crispy crust.","image":"images/margherita-pizza.jpg","quantity":1}],"customer":{"name":"Mo3wad Ibrahim","email":"mo3wadibrahim@gmail.com","street":"El omraneya - Althalatheny - 5","postal-code":"12573","city":"Giza"},"id":"895.4745694656632"},{"items":[{"id":"m3","name":"Caesar Salad","price":"7.99","description":"Romaine lettuce tossed in Caesar dressing, topped with croutons and parmesan shavings.","image":"images/caesar-salad.jpg","quantity":1},{"id":"m2","name":"Margherita Pizza","price":"12.99","description":"A classic pizza with fresh mozzarella, tomatoes, and basil on a thin and crispy crust.","image":"images/margherita-pizza.jpg","quantity":1}],"customer":{"name":"Mo3wad Ibrahim","email":"mo3wadibrahim@gmail.com","street":"El omraneya - Althalatheny - 5","postal-code":"12573","city":"Giza"},"id":"252.12760988168446"},{"items":[{"id":"m2","name":"Margherita Pizza","price":"12.99","description":"A classic pizza with fresh mozzarella, tomatoes, and basil on a thin and crispy crust.","image":"images/margherita-pizza.jpg","quantity":1},{"id":"m3","name":"Caesar Salad","price":"7.99","description":"Romaine lettuce tossed in Caesar dressing, topped with croutons and parmesan shavings.","image":"images/caesar-salad.jpg","quantity":1}],"customer":{"name":"Mo3wad Ibrahim","email":"mo3wadibrahim@gmail.com","street":"El omraneya - Althalatheny - 5","postal-code":"12573","city":"Giza"},"id":"944.4585239960437"},{"items":[{"id":"m3","name":"Caesar Salad","price":"7.99","description":"Romaine lettuce tossed in Caesar dressing, topped with croutons and parmesan shavings.","image":"images/caesar-salad.jpg","quantity":1},{"id":"m2","name":"Margherita Pizza","price":"12.99","description":"A classic pizza with fresh mozzarella, tomatoes, and basil on a thin and crispy crust.","image":"images/margherita-pizza.jpg","quantity":1}],"customer":{"name":"Mo3wad Ibrahim","email":"mo3wadibrahim@gmail.com","street":"El omraneya - Althalatheny - 5","postal-code":"343534","city":"Giza"},"id":"413.0043801735101"}]
+[
+  {
+    "items": [
+      {
+        "id": "m3",
+        "name": "Caesar Salad",
+        "price": "7.99",
+        "description": "Romaine lettuce tossed in Caesar dressing, topped with croutons and parmesan shavings.",
+        "image": "images/caesar-salad.jpg",
+        "quantity": 1
+      },
+      {
+        "id": "m2",
+        "name": "Margherita Pizza",
+        "price": "12.99",
+        "description": "A classic pizza with fresh mozzarella, tomatoes, and basil on a thin and crispy crust.",
+        "image": "images/margherita-pizza.jpg",
+        "quantity": 2
+      },
+      {
+        "id": "m1",
+        "name": "Mac & Cheese",
+        "price": "8.99",
+        "description": "Creamy cheddar cheese mixed with perfectly cooked macaroni, topped with crispy breadcrumbs. A classic comfort food.",
+        "image": "images/mac-and-cheese.jpg",
+        "quantity": 1
+      }
+    ],
+    "customer": {
+      "name": "Mo3wad Ibrahim",
+      "email": "mo3wadibrahim@gmail.com",
+      "street": "El omraneya - Althalatheny - 5",
+      "postal-code": "12573",
+      "city": "Giza"
+    },
+    "id": "132.2580524815349"
+  }
+]
