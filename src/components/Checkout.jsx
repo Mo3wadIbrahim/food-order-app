@@ -6,19 +6,20 @@ import Modal from "./UI/Modal.jsx";
 import Button from "./UI/Button.jsx";
 import Input from "./UI/Input.jsx";
 import useHttp from "../hooks/useHTTP.js";
-// import ErrorComponent from "./ErrorComponent.jsx";
+import ErrorComponent from "./ErrorComponent.jsx";
 
 const configRequest = {
   method: "POST",
   headers: { "Content-Type": "application/json" },
 };
 export default function Checkout() {
-  const { isLoading: isSending, sendRequest } = useHttp(
-    "http://localhost:3000/orders",
-    configRequest,
-  );
+  const {
+    error,
+    isLoading: isSending,
+    sendRequest,
+  } = useHttp("http://localhost:3000/orders", configRequest);
   const { progress, showCart, hideCheckout } = use(UserProgressContext);
-  const { items, removeItems } = use(CartContext);
+  const { items } = use(CartContext);
   const cartTotalPrice = items.reduce(
     (totalPrice, item) => totalPrice + item.quantity * item.price,
     0,
@@ -35,8 +36,6 @@ export default function Checkout() {
       },
     });
     sendRequest(order);
-    hideCheckout();
-    removeItems();
   }
   let actions = (
     <>
@@ -49,9 +48,9 @@ export default function Checkout() {
       <Button type="submit">Submit Order</Button>
     </>
   );
-  // if (error) {
-  //   return <ErrorComponent message={error} title={"There is an Error"} />;
-  // }
+  if (error) {
+    return <ErrorComponent message={error} title={"There is an Error"} />;
+  }
   if (isSending) {
     actions = <p>Data is Sending...</p>;
   }
@@ -70,7 +69,7 @@ export default function Checkout() {
           <Input label="Postal Code" type="text" id="postal-code" />
           <Input label="City" type="text" id="city" />
         </div>
-        <p className="modal-actions">{actions}</p>
+        <div className="modal-actions">{actions}</div>
       </form>
     </Modal>
   );
