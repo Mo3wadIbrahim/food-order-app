@@ -17,6 +17,7 @@ export default function Checkout() {
     error,
     isLoading: isSending,
     sendRequest,
+    clearData,
   } = useHttp("http://localhost:3000/orders", configRequest);
   const { progress, showCart, hideCheckout } = use(UserProgressContext);
   const { items } = use(CartContext);
@@ -36,6 +37,8 @@ export default function Checkout() {
       },
     });
     sendRequest(order);
+    clearData();
+    hideCheckout();
   }
   let actions = (
     <>
@@ -52,7 +55,7 @@ export default function Checkout() {
     return <ErrorComponent message={error} title={"There is an Error"} />;
   }
   if (isSending) {
-    actions = <p>Data is Sending...</p>;
+    actions = <div>Data is Sending...</div>;
   }
   return (
     <Modal
