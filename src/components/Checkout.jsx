@@ -28,15 +28,13 @@ export default function Checkout() {
     event.preventDefault();
     const fd = new FormData(event.target);
     const formData = Object.fromEntries(fd.entries());
-
-    sendRequest(
-      JSON.stringify({
-        order: {
-          items: items,
-          customer: formData,
-        },
-      }),
-    );
+    const order = JSON.stringify({
+      order: {
+        items: items,
+        customer: formData,
+      },
+    });
+    sendRequest(order);
     hideCheckout();
     removeItems();
   }
