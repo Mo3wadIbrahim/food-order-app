@@ -9,7 +9,7 @@ export default function Meals() {
     error,
   } = useHttp("http://localhost:3000/meals", initialData, []);
   if (isLoading) {
-    return <p>Loading Data...</p>;
+    return <p className="center">Loading Data...</p>;
   }
   if (error) {
     return <ErrorComponent message={error} title={"There is an Error"} />;
