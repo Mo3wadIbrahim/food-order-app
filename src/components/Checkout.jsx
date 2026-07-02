@@ -7,18 +7,17 @@ import Button from "./UI/Button.jsx";
 import Input from "./UI/Input.jsx";
 import useHttp from "../hooks/useHTTP.js";
 import ErrorComponent from "./ErrorComponent.jsx";
+import { useActionState } from "react";
 
 const configRequest = {
   method: "POST",
   headers: { "Content-Type": "application/json" },
 };
 export default function Checkout() {
-  const {
-    error,
-    isLoading: isSending,
-    sendRequest,
-    clearData,
-  } = useHttp("http://localhost:3000/orders", configRequest);
+  const { error, sendRequest, clearData } = useHttp(
+    "http://localhost:3000/orders",
+    configRequest,
+  );
   const { progress, showCart, hideCheckout } = use(UserProgressContext);
   const { items } = use(CartContext);
   const cartTotalPrice = items.reduce(
@@ -26,9 +25,7 @@ export default function Checkout() {
     0,
   );
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    const fd = new FormData(event.target);
+  function checkoutAction(prevState, fd) {
     const formData = Object.fromEntries(fd.entries());
     const order = JSON.stringify({
       order: {
@@ -40,6 +37,12 @@ export default function Checkout() {
     clearData();
     hideCheckout();
   }
+
+  // eslint-disable-next-line no-unused-vars
+  const [formState, formAction, isSending] = useActionState(
+    checkoutAction,
+    null,
+  );
   let actions = (
     <>
       <Button textOnly onClick={hideCheckout}>
@@ -64,7 +67,7 @@ export default function Checkout() {
       onClose={progress === "checkout" ? hideCheckout : null}
     >
       <h3>Total Amount: {currencyFormatter.format(cartTotalPrice)}</h3>
-      <form onSubmit={handleSubmit}>
+      <form action={formAction}>
         <Input label="Full Name" type="text" id="name" />
         <Input label="E-mail Address" type="email" id="email" />
         <Input label="Street" type="text" id="street" />
